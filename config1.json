@@ -1,0 +1,17 @@
+{
+  "map": "road1.json",
+  "players": [
+    {
+      "name": "Tom",
+      "folder": "tom",
+      "playable": true,
+      "debug": false
+    },
+    {
+      "name": "Tom2",
+      "folder": "tom",
+      "playable": false,
+      "debug": false
+    }
+  ]
+}

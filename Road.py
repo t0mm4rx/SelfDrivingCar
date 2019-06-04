@@ -6,12 +6,13 @@ import Utils
 class Road():
 
     def __init__(self, filename, screen):
-        self.road_width = 120
         self.load_file(filename)
         self.screen = screen
 
     def load_file(self, filename):
-        self.points = json.loads(open(filename).read())
+        file = json.loads(open(filename).read())
+        self.points = file['points']
+        self.road_width = file['width']
 
         self.bounds = []
 
@@ -37,12 +38,22 @@ class Road():
         self.polygons = []
         for i in range(len(self.points)):
             a = i * 2
-            print(a)
             self.polygons.append([
                 self.bounds[a],
                 self.bounds[a + 1],
                 self.bounds[(a + 3) % len(self.bounds)],
                 self.bounds[(a + 2) % len(self.bounds)],
+            ])
+
+        self.lines = []
+        for p in self.polygons:
+            self.lines.append([
+                p[0],
+                p[3]
+            ])
+            self.lines.append([
+                p[1],
+                p[2]
             ])
 
     def draw(self):
@@ -61,3 +72,6 @@ class Road():
 
         for b in self.bounds:
             pygame.draw.circle(self.screen, (255, 255, 255), b, 5)
+
+        for l in self.lines:
+            pygame.draw.line(self.screen, (255, 255, 255), l[0], l[1])
