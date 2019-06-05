@@ -2,9 +2,13 @@
 
 This project allows you to make multiple AI controll cars and compete in a race. This can used to make AI battles, or to compare differents strategies.
 
+The unique dependency is pygame. This code has been made and tested w/ Python 3.7.3 on Arch Linux. 
+
 ## How does it work ?
 
-First of all, you each AI, or controller, needs its own directory in the "controllers" folder. You can copy/paste the empty folder, which is an empty template.
+A race is composed of multiple cars, controlled by a controller (an AI) or by a human. There are multiple maps and you can create new. You can create many AI and make them compete in a race to see which is the best.
+
+First of all, each AI, or controller, needs its own directory in the "controllers" folder. You can copy/paste the empty folder, which is an empty template.
 
 You can launch a game with this command :
 ```bash
@@ -75,6 +79,15 @@ class Controller(AI):
         print(sensors, speed, heading, inputs)
 
 ```
+
+You can control 4 actions: up, right, down, left. Example:
+```python
+    def play(self, sensors, speed, heading, inputs):
+        self.up = True
+        self.right = True
+        self.left = False
+        self.down = False
+```  
 
 ## Maps
 

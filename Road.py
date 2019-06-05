@@ -1,3 +1,9 @@
+"""
+    This is the road class. Don't edit this.
+    It loads the given file, and calculates the bounds of the road.
+    It also renders the road.
+"""
+
 import numpy as np
 import pygame
 import json

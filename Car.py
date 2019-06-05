@@ -1,3 +1,13 @@
+"""
+    This is the Car class. Don't edit this.
+    It :
+    - loads the controller in the given folder (folder option)
+    - takes user inputs if the car is playable, take the controller input if not
+    - calculate sensors value
+    - calculate acceleration, speed, friction...
+    - render the car
+"""
+
 import numpy as np
 import pygame
 import Utils
@@ -91,8 +101,6 @@ class Car():
             self.direction = Utils.normalize(Utils.rotate(self.direction, -self.rotation_speed *Utils.length(self.speed) / self.max_speed))
         if (left):
             self.direction = Utils.normalize(Utils.rotate(self.direction, self.rotation_speed *Utils.length(self.speed) / self.max_speed))
-
-
 
         # Updating motion
         if (np.abs(np.dot(self.speed, self.direction)) <= self.max_speed):

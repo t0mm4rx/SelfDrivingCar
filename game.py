@@ -1,3 +1,12 @@
+"""
+    Entry-point of this project. If you edit this, make sure to create a copy of this file.
+    It:
+    - loads a config file
+    - create the map
+    - instantiate players
+    - start the game loop, draw and update everything 60 times/second
+"""
+
 import os
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame, sys
