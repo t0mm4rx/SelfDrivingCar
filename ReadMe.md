@@ -2,7 +2,9 @@
 
 This project allows you to make multiple AI controll cars and compete in a race. This can used to make AI battles, or to compare differents strategies.
 
-The unique dependency is pygame. This code has been made and tested w/ Python 3.7.3 on Arch Linux. 
+The unique dependency is pygame. This code has been made and tested w/ Python 3.7.3 on Arch Linux.
+
+![Preview](preview.gif)
 
 ## How does it work ?
 

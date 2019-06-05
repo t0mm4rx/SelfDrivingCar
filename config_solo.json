@@ -1,0 +1,11 @@
+{
+  "map": "road1.json",
+  "players": [
+    {
+      "name": "IA",
+      "folder": "empty",
+      "playable": true,
+      "debug": true
+    }
+  ]
+}
