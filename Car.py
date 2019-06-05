@@ -2,10 +2,12 @@ import numpy as np
 import pygame
 import Utils
 import random
+from AI import *
 
 class Car():
 
     def __init__(self, ai, name, road, playable, debug, screen):
+        module = __import__('controllers.{}.ai'.format(ai), fromlist=['ai'])
         self.road = road
         self.direction = np.array([1, 0], "float16")
         self.pos = np.array([100, 100], "float16")
@@ -58,23 +60,38 @@ class Car():
 
         self.font_20 = pygame.font.SysFont("monospace", 20)
         self.color = (random.randint(0, 255),random.randint(0, 255), random.randint(0, 255))
+        self.controller = module.Controller()
+        self.controller.start(road)
 
     def draw(self):
 
         # Handling inputs
+        inputs = None
         if (self.playable):
             keys = pygame.key.get_pressed()
-            if (keys[pygame.K_UP]):
-                self.acc = .1
-            elif (keys[pygame.K_DOWN]):
-                self.acc = -.1
-            else:
-                self.acc = 0
+            left = keys[pygame.K_LEFT]
+            up = keys[pygame.K_UP]
+            right = keys[pygame.K_RIGHT]
+            down = keys[pygame.K_DOWN]
+            inputs = [up, right, down, left]
+        else:
+            left = self.controller.left
+            right = self.controller.right
+            up = self.controller.up
+            down = self.controller.down
 
-            if (keys[pygame.K_RIGHT]):
-                self.direction = Utils.normalize(Utils.rotate(self.direction, -self.rotation_speed * Utils.length(self.speed) / self.max_speed))
-            if (keys[pygame.K_LEFT]):
-                self.direction = Utils.normalize(Utils.rotate(self.direction, self.rotation_speed * Utils.length(self.speed) / self.max_speed))
+        if (up):
+            self.acc = .1
+        elif (down):
+            self.acc = -.1
+        else:
+            self.acc = 0
+
+        if (right):
+            self.direction = Utils.normalize(Utils.rotate(self.direction, -self.rotation_speed *Utils.length(self.speed) / self.max_speed))
+        if (left):
+            self.direction = Utils.normalize(Utils.rotate(self.direction, self.rotation_speed *Utils.length(self.speed) / self.max_speed))
+
 
 
         # Updating motion
@@ -130,3 +147,5 @@ class Car():
                 pygame.draw.line(self.screen, (255, 255, 0), self.pos, np.add(self.pos, s['vector']), 2)
                 if (s['point'] != None):
                     pygame.draw.circle(self.screen, (255, 0, 0), s['point'], 5)
+
+        self.controller.play(self.sensors, self.speed, self.direction, inputs)

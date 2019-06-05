@@ -2,14 +2,14 @@
   "map": "road1.json",
   "players": [
     {
-      "name": "Tom",
-      "folder": "tom",
+      "name": "IA",
+      "folder": "empty",
       "playable": true,
-      "debug": false
+      "debug": true
     },
     {
-      "name": "Tom2",
-      "folder": "tom",
+      "name": "IA2",
+      "folder": "test",
       "playable": false,
       "debug": false
     }
