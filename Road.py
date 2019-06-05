@@ -10,7 +10,7 @@ class Road():
         self.screen = screen
 
     def load_file(self, filename):
-        file = json.loads(open(filename).read())
+        file = json.loads(open('maps/{}'.format(filename)).read())
         self.points = file['points']
         self.road_width = file['width']
 
